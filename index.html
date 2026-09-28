@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BHAIRAVA LIVE</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <div>
+    <h1>⚡ BHAIRAVA LIVE</h1>
+    <p>AI AUTONOMOUS SURVEILLANCE SYSTEM</p>
+  </div>
+
+  <div id="systemStatus" class="status offline">
+    ● OFFLINE
+  </div>
+</header>
+
+
+<!-- CONNECTION -->
+
+<section class="connection-panel">
+
+  <h2>COMMUNICATION LINK</h2>
+
+  <div class="connection-row">
+
+    <select id="connectionType">
+      <option value="auto">AUTO</option>
+      <option value="usb">USB / SERIAL</option>
+      <option value="tcp">TCP</option>
+      <option value="udp">UDP</option>
+      <option value="ws">WEBSOCKET</option>
+    </select>
+
+    <input
+      id="address"
+      type="text"
+      placeholder="Address / Port"
+    >
+
+    <button id="connectBtn">
+      CONNECT
+    </button>
+
+    <button id="disconnectBtn" class="danger">
+      DISCONNECT
+    </button>
+
+  </div>
+
+  <div id="connectionMessage">
+    Waiting for Bhairava...
+  </div>
+
+</section>
+
+
+<!-- MAIN TELEMETRY -->
+
+<section class="grid">
+
+  <div class="card">
+    <h3>BATTERY</h3>
+    <div id="battery">-- %</div>
+    <small id="voltage">-- V</small>
+  </div>
+
+  <div class="card">
+    <h3>GPS</h3>
+    <div id="gps">NO FIX</div>
+    <small id="coordinates">-- , --</small>
+  </div>
+
+  <div class="card">
+    <h3>ALTITUDE</h3>
+    <div id="altitude">-- m</div>
+  </div>
+
+  <div class="card">
+    <h3>GROUND SPEED</h3>
+    <div id="speed">-- m/s</div>
+  </div>
+
+  <div class="card">
+    <h3>AI COMPUTER</h3>
+    <div id="aiLoad">-- %</div>
+    <small id="cpuTemp">CPU -- °C</small>
+  </div>
+
+  <div class="card">
+    <h3>STORAGE</h3>
+    <div id="storage">-- %</div>
+  </div>
+
+  <div class="card">
+    <h3>SOLAR</h3>
+    <div id="solar">-- W</div>
+  </div>
+
+  <div class="card">
+    <h3>LiDAR</h3>
+    <div id="lidar">WAITING</div>
+  </div>
+
+</section>
+
+
+<!-- FLIGHT / SYSTEM -->
+
+<section class="wide-grid">
+
+  <div class="panel">
+
+    <h2>FLIGHT STATUS</h2>
+
+    <div class="bigStatus" id="flightMode">
+      DISCONNECTED
+    </div>
+
+    <div class="dataLine">
+      <span>ARM STATUS</span>
+      <b id="armStatus">--</b>
+    </div>
+
+    <div class="dataLine">
+      <span>GPS SATELLITES</span>
+      <b id="satellites">--</b>
+    </div>
+
+    <div class="dataLine">
+      <span>TELEMETRY</span>
+      <b id="telemetryStatus">OFFLINE</b>
+    </div>
+
+  </div>
+
+
+  <div class="panel">
+
+    <h2>FAILSAFE</h2>
+
+    <div id="failsafe" class="safe">
+      SYSTEM NOMINAL
+    </div>
+
+    <p>
+      Ground-station connection loss is reported here.
+      Vehicle safety behavior remains onboard the flight controller.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- MAP -->
+
+<section class="map-panel">
+
+  <h2>POSITION</h2>
+
+  <div id="map">
+    <div class="crosshair"></div>
+    <div id="droneMarker">◆</div>
+  </div>
+
+  <div id="mapText">
+    GPS POSITION UNAVAILABLE
+  </div>
+
+</section>
+</section>
+
+
+<!-- LIVE AI VISION -->
+
+<section class="camera-section">
+
+    <div class="section-title">
+        <span>LIVE AI VISION</span>
+        <span class="camera-status">
+            <span class="status-dot"></span>
+            CAMERA ONLINE
+        </span>
+    </div>
+
+    <div class="camera-layout">
+
+        <div class="camera-feed">
+
+            <video id="liveVideo" autoplay muted playsinline></video>
+
+            <div class="camera-placeholder" id="cameraPlaceholder">
+                <div class="camera-icon">◉</div>
+                <div>WAITING FOR VIDEO STREAM</div>
+                <small>OAK-D LITE / AI VISION</small>
+            </div>
+
+            <div class="ai-box box-1">
+                <span>AI DETECTION</span>
+            </div>
+
+            <div class="camera-overlay">
+                <span>REC ●</span>
+                <span id="cameraFPS">FPS --</span>
+                <span>AI VISION</span>
+            </div>
+
+        </div>
+
+        <div class="ai-panel">
+
+            <h3>AI ANALYSIS</h3>
+
+            <div class="ai-row">
+                <span>VISION STATUS</span>
+                <strong id="aiVisionStatus">STANDBY</strong>
+            </div>
+
+            <div class="ai-row">
+                <span>OBJECTS DETECTED</span>
+                <strong id="objectsDetected">0</strong>
+            </div>
+
+            <div class="ai-row">
+                <span>AI LOAD</span>
+                <strong id="visionLoad">--%</strong>
+            </div>
+
+            <div class="ai-row">
+                <span>CAMERA</span>
+                <strong>OAK-D LITE</strong>
+            </div>
+
+            <div class="ai-row">
+                <span>DEPTH</span>
+                <strong id="depthStatus">READY</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EVENT LOG -->
+
+<!-- EVENT LOG -->
+
+<section class="panel">
+
+  <h2>EVENT LOG</h2>
+
+  <div id="eventLog">
+    <div>[SYSTEM] BHAIRAVA LIVE INITIALIZED</div>
+  </div>
+
+</section>
+
+
+<footer>
+  BHAIRAVA LIVE • MAVLink TELEMETRY INTERFACE
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

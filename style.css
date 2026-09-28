@@ -1,0 +1,585 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top, #111d2e, #05070b 55%);
+  color: #eafcff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  border-bottom: 1px solid #1e5264;
+}
+
+h1 {
+  margin: 0;
+  letter-spacing: 4px;
+  font-size: 30px;
+}
+
+header p {
+  margin: 6px 0 0;
+  color: #65d9ff;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+.status {
+  padding: 12px 18px;
+  border: 1px solid;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.online {
+  color: #65ff9a;
+  border-color: #65ff9a;
+}
+
+.offline {
+  color: #ff4f5e;
+  border-color: #ff4f5e;
+}
+
+/* =========================
+   PANELS
+========================= */
+
+.connection-panel,
+.panel,
+.map-panel {
+  margin: 20px;
+  padding: 20px;
+  background: rgba(8, 15, 24, 0.88);
+  border: 1px solid #174456;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0, 180, 255, 0.08);
+}
+
+/* =========================
+   CONNECTION
+========================= */
+
+.connection-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+select,
+input,
+button {
+  background: #080e15;
+  color: #eafcff;
+  border: 1px solid #23677b;
+  padding: 13px;
+  border-radius: 7px;
+}
+
+select {
+  min-width: 180px;
+}
+
+input {
+  flex: 1;
+  min-width: 220px;
+}
+
+button {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #102b3a;
+}
+
+.danger {
+  border-color: #a73542;
+}
+
+#connectionMessage {
+  margin-top: 12px;
+  color: #74dfff;
+}
+
+/* =========================
+   TELEMETRY GRID
+========================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  padding: 0 20px;
+}
+
+.card {
+  padding: 20px;
+  background: rgba(9, 18, 28, 0.92);
+  border: 1px solid #174456;
+  border-radius: 10px;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #67dfff;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.card div {
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.card small {
+  color: #8198a5;
+}
+
+/* =========================
+   FLIGHT STATUS
+========================= */
+
+.wide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.bigStatus {
+  font-size: 28px;
+  color: #66e4ff;
+  margin: 15px 0;
+}
+
+.dataLine {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #18303b;
+}
+
+.safe {
+  color: #65ff9a;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* =========================
+   POSITION MAP
+========================= */
+
+.map-panel {
+  height: 400px;
+}
+
+#map {
+  height: 290px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #1b5a70;
+  background:
+    linear-gradient(#123044 1px, transparent 1px),
+    linear-gradient(90deg, #123044 1px, transparent 1px);
+  background-size: 35px 35px;
+}
+
+.crosshair {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 49.8%,
+      #1c6980 50%,
+      transparent 50.2%
+    ),
+    linear-gradient(
+      transparent 49.8%,
+      #1c6980 50%,
+      transparent 50.2%
+    );
+}
+
+#droneMarker {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: #ff4055;
+  font-size: 30px;
+  transform: translate(-50%, -50%);
+  text-shadow: 0 0 15px #ff4055;
+}
+
+#mapText {
+  margin-top: 10px;
+  color: #65dfff;
+}
+
+/* =====================================================
+   BHAIRAVA MONITOR — LIVE AI VISION
+===================================================== */
+
+.camera-section {
+  margin: 40px 20px 30px;
+  padding-top: 28px;
+  border-top: 1px solid #174456;
+}
+
+/* TITLE */
+
+.camera-section .section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 0 4px;
+
+  color: #e8faff;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.camera-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #00ff9d;
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  background: #00ff9d;
+  box-shadow: 0 0 12px #00ff9d;
+}
+
+/* CAMERA + AI LAYOUT */
+
+.camera-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2.5fr) minmax(280px, 1fr);
+  gap: 18px;
+  width: 100%;
+}
+
+/* CAMERA WINDOW */
+
+.camera-feed {
+  position: relative;
+
+  width: 100%;
+  height: 430px;
+
+  overflow: hidden;
+
+  border: 1px solid #12627c;
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      rgba(0, 210, 255, 0.055) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 210, 255, 0.055) 1px,
+      transparent 1px
+    ),
+    #050b12;
+
+  background-size: 38px 38px;
+
+  box-shadow:
+    inset 0 0 40px rgba(0, 180, 255, 0.05),
+    0 0 25px rgba(0, 170, 255, 0.08);
+}
+
+/* VIDEO */
+
+#liveVideo {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: none;
+}
+
+/* CAMERA PLACEHOLDER */
+
+.camera-placeholder {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  color: #00d9ff;
+
+  font-family: monospace;
+  letter-spacing: 2px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0, 190, 255, 0.09),
+      transparent 55%
+    );
+}
+
+.camera-icon {
+  margin-bottom: 16px;
+
+  font-size: 48px;
+
+  color: #00eaff;
+
+  text-shadow:
+    0 0 10px #00eaff,
+    0 0 25px rgba(0, 234, 255, 0.5);
+}
+
+.camera-placeholder div:nth-child(2) {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.camera-placeholder small {
+  margin-top: 10px;
+
+  color: #628696;
+
+  font-size: 10px;
+}
+
+/* AI DETECTION BOX */
+
+.ai-box {
+  position: absolute;
+
+  left: 42%;
+  top: 38%;
+
+  width: 150px;
+  height: 105px;
+
+  border: 2px solid #00ff9d;
+
+  box-shadow:
+    0 0 12px rgba(0, 255, 157, 0.3),
+    inset 0 0 15px rgba(0, 255, 157, 0.05);
+}
+
+.ai-box span {
+  position: absolute;
+
+  top: -22px;
+  left: -2px;
+
+  padding: 4px 8px;
+
+  background: #00ff9d;
+
+  color: #00130c;
+
+  font-family: monospace;
+  font-size: 9px;
+  font-weight: bold;
+}
+
+/* CAMERA HUD */
+
+.camera-overlay {
+  position: absolute;
+
+  top: 14px;
+  left: 16px;
+  right: 16px;
+
+  display: flex;
+  justify-content: space-between;
+
+  color: #00eaff;
+
+  font-family: monospace;
+  font-size: 11px;
+
+  pointer-events: none;
+}
+
+.camera-overlay span:first-child {
+  color: #ff4d5f;
+}
+
+/* AI ANALYSIS */
+
+.ai-panel {
+  height: 430px;
+
+  padding: 20px;
+
+  background: #070e16;
+
+  border: 1px solid #12627c;
+  border-radius: 10px;
+
+  box-shadow:
+    inset 0 0 30px rgba(0, 170, 255, 0.03);
+}
+
+.ai-panel h3 {
+  margin: 0 0 14px 0;
+
+  color: #00d9ff;
+
+  font-size: 17px;
+  letter-spacing: 2px;
+}
+
+/* AI ROWS */
+
+.ai-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 13px 0;
+
+  border-bottom: 1px solid #17303e;
+
+  color: #7f9daa;
+
+  font-family: monospace;
+  font-size: 11px;
+}
+
+.ai-row strong {
+  color: #00ff9d;
+  font-size: 12px;
+}
+
+/* DETECTION LOG */
+
+.detection-log {
+  margin-top: 22px;
+  padding-top: 14px;
+
+  border-top: 1px solid #17303e;
+}
+
+.detection-log h4 {
+  margin: 0 0 10px 0;
+
+  color: #638896;
+
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+#detectionLog {
+  color: #00d9ff;
+
+  font-family: monospace;
+  font-size: 10px;
+}
+
+/* =========================
+   EVENT LOG
+========================= */
+
+#eventLog {
+  max-height: 180px;
+  overflow-y: auto;
+
+  font-family: monospace;
+  color: #8fdfff;
+  line-height: 1.8;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  text-align: center;
+  padding: 25px;
+
+  color: #52717d;
+  font-size: 11px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .wide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .camera-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .camera-feed,
+  .ai-panel {
+    height: 380px;
+  }
+}
+
+@media (max-width: 550px) {
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .camera-section .section-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .camera-feed,
+  .ai-panel {
+    height: 330px;
+  }
+}
