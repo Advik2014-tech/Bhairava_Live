@@ -1,0 +1,915 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 70% 45%, rgba(0, 200, 255, 0.09), transparent 32%),
+        radial-gradient(circle at 20% 80%, rgba(100, 0, 255, 0.07), transparent 30%),
+        #03070c;
+    color: #e9fbff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.background-grid {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+
+    background-image:
+        linear-gradient(rgba(0, 180, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 180, 255, 0.045) 1px, transparent 1px);
+
+    background-size: 45px 45px;
+
+    transform: perspective(700px) rotateX(60deg) scale(1.7);
+    transform-origin: center bottom;
+
+    animation: gridMove 12s linear infinite;
+}
+
+@keyframes gridMove {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0 450px;
+    }
+}
+
+
+.scanline {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 2px;
+
+    background: rgba(0, 220, 255, 0.18);
+
+    box-shadow: 0 0 18px rgba(0, 220, 255, 0.4);
+
+    pointer-events: none;
+    z-index: 20;
+
+    animation: scan 7s linear infinite;
+}
+
+@keyframes scan {
+    from {
+        top: -5%;
+    }
+
+    to {
+        top: 105%;
+    }
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar {
+    height: 72px;
+    padding: 0 5vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid rgba(0, 210, 255, 0.15);
+
+    background: rgba(3, 8, 13, 0.72);
+    backdrop-filter: blur(12px);
+}
+
+.brand {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 5px;
+}
+
+.brand-icon {
+    color: #00d9ff;
+    margin-right: 10px;
+    text-shadow: 0 0 15px #00d9ff;
+}
+
+.system-state {
+    color: #7defff;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.pulse,
+.footer-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+    background: #00ff9d;
+
+    box-shadow: 0 0 12px #00ff9d;
+
+    margin-right: 8px;
+
+    animation: pulse 1.4s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.35;
+        transform: scale(0.7);
+    }
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: calc(100vh - 72px);
+
+    display: grid;
+    grid-template-columns: 45% 55%;
+
+    align-items: center;
+
+    padding: 50px 6vw 40px;
+
+    position: relative;
+}
+
+
+/* =========================
+   HERO TEXT
+========================= */
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+}
+
+.classification {
+    color: #00d9ff;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 18px;
+
+    animation: fadeUp 1s ease both;
+}
+
+h1 {
+    font-size: clamp(70px, 9vw, 145px);
+    line-height: 0.85;
+
+    letter-spacing: 8px;
+
+    font-weight: 900;
+
+    background: linear-gradient(
+        180deg,
+        #ffffff,
+        #8ceeff 55%,
+        #00a8d6
+    );
+
+    -webkit-background-clip: text;
+    color: transparent;
+
+    filter: drop-shadow(0 0 20px rgba(0, 200, 255, 0.25));
+
+    animation: titleIn 1.2s ease both;
+}
+
+@keyframes titleIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+        letter-spacing: 25px;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        letter-spacing: 8px;
+    }
+}
+
+.subtitle {
+    margin-top: 20px;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    color: #b7dce5;
+}
+
+.subtitle span {
+    display: block;
+    color: #00d9ff;
+}
+
+.description {
+    max-width: 520px;
+
+    margin-top: 25px;
+
+    color: #77939e;
+
+    line-height: 1.7;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+
+    margin-top: 35px;
+
+    flex-wrap: wrap;
+}
+
+.enter-button,
+.systems-button {
+    text-decoration: none;
+
+    padding: 15px 22px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    transition: 0.25s;
+}
+
+.enter-button {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+
+    color: #001018;
+
+    background: #00d9ff;
+
+    box-shadow:
+        0 0 20px rgba(0, 217, 255, 0.25);
+
+    clip-path: polygon(
+        0 0,
+        calc(100% - 12px) 0,
+        100% 12px,
+        100% 100%,
+        12px 100%,
+        0 calc(100% - 12px)
+    );
+}
+
+.enter-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 35px rgba(0, 217, 255, 0.55);
+}
+
+.enter-button b {
+    font-size: 20px;
+}
+
+.systems-button {
+    color: #8ba9b2;
+
+    border: 1px solid rgba(0, 217, 255, 0.25);
+}
+
+.systems-button:hover {
+    color: #00d9ff;
+
+    border-color: #00d9ff;
+
+    background: rgba(0, 217, 255, 0.05);
+}
+
+
+/* =========================
+   DRONE ZONE
+========================= */
+
+.drone-zone {
+    height: 620px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation: droneZoneIn 1.3s ease both;
+}
+
+@keyframes droneZoneIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================
+   RADAR
+========================= */
+
+.radar-ring {
+    position: absolute;
+
+    border: 1px solid rgba(0, 210, 255, 0.16);
+
+    border-radius: 50%;
+
+    box-shadow:
+        inset 0 0 25px rgba(0, 210, 255, 0.04);
+}
+
+.ring-1 {
+    width: 250px;
+    height: 250px;
+}
+
+.ring-2 {
+    width: 410px;
+    height: 410px;
+}
+
+.ring-3 {
+    width: 570px;
+    height: 570px;
+}
+
+.radar-ring::after {
+    content: "";
+
+    position: absolute;
+
+    inset: -1px;
+
+    border-radius: 50%;
+
+    border-top: 1px solid #00d9ff;
+
+    transform: rotate(20deg);
+
+    opacity: 0.5;
+
+    animation: radarSpin 5s linear infinite;
+}
+
+@keyframes radarSpin {
+    to {
+        transform: rotate(380deg);
+    }
+}
+
+
+/* =========================
+   TARGET HUD
+========================= */
+
+.target-line {
+    position: absolute;
+
+    background: rgba(0, 217, 255, 0.1);
+}
+
+.horizontal {
+    width: 100%;
+    height: 1px;
+}
+
+.vertical {
+    width: 1px;
+    height: 100%;
+}
+
+.target-box {
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+.target-box::before,
+.target-box::after {
+    content: "";
+
+    position: absolute;
+
+    width: 25px;
+    height: 25px;
+
+    border-color: #00d9ff;
+}
+
+.target-box::before {
+    top: -1px;
+    left: -1px;
+
+    border-top: 2px solid;
+    border-left: 2px solid;
+}
+
+.target-box::after {
+    right: -1px;
+    bottom: -1px;
+
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+}
+
+
+/* =========================
+   DRONE
+========================= */
+
+.drone {
+    position: relative;
+
+    width: 330px;
+    height: 220px;
+
+    animation: droneFloat 4s ease-in-out infinite;
+
+    filter:
+        drop-shadow(0 0 20px rgba(0, 217, 255, 0.2));
+}
+
+@keyframes droneFloat {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+    }
+
+    25% {
+        transform: translateY(-13px) translateX(7px);
+    }
+
+    50% {
+        transform: translateY(-3px) translateX(-5px);
+    }
+
+    75% {
+        transform: translateY(10px) translateX(5px);
+    }
+}
+
+
+/* DRONE BODY */
+
+.drone-body {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 125px;
+    height: 72px;
+
+    border-radius: 48% 48% 42% 42%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #26353d,
+            #080e13 65%
+        );
+
+    border: 1px solid rgba(130, 230, 255, 0.5);
+
+    box-shadow:
+        inset 0 0 20px rgba(0, 200, 255, 0.12),
+        0 0 25px rgba(0, 200, 255, 0.12);
+}
+
+.drone-core {
+    position: absolute;
+
+    left: 50%;
+    top: 20px;
+
+    transform: translateX(-50%);
+
+    width: 35px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: #00d9ff;
+
+    box-shadow:
+        0 0 12px #00d9ff,
+        0 0 30px rgba(0, 217, 255, 0.6);
+}
+
+.camera-unit {
+    position: absolute;
+
+    left: 50%;
+    bottom: -17px;
+
+    transform: translateX(-50%);
+
+    width: 30px;
+    height: 28px;
+
+    background: #101b20;
+
+    border: 1px solid #49616a;
+
+    border-radius: 7px;
+}
+
+.camera-lens {
+    width: 13px;
+    height: 13px;
+
+    border-radius: 50%;
+
+    background: #071014;
+
+    border: 2px solid #00d9ff;
+
+    box-shadow: 0 0 10px #00d9ff;
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+
+/* ARMS */
+
+.arm {
+    position: absolute;
+
+    width: 120px;
+    height: 12px;
+
+    background: linear-gradient(
+        90deg,
+        #0b1217,
+        #3a4d55,
+        #0b1217
+    );
+
+    border: 1px solid #344b54;
+
+    border-radius: 10px;
+}
+
+.arm-1 {
+    left: 0;
+    top: 47px;
+    transform: rotate(25deg);
+}
+
+.arm-2 {
+    right: 0;
+    top: 47px;
+    transform: rotate(-25deg);
+}
+
+.arm-3 {
+    left: 10px;
+    bottom: 38px;
+    transform: rotate(-25deg);
+}
+
+.arm-4 {
+    right: 10px;
+    bottom: 38px;
+    transform: rotate(25deg);
+}
+
+
+/* ROTORS */
+
+.rotor {
+    position: absolute;
+
+    width: 75px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: rgba(150, 235, 255, 0.12);
+
+    border: 1px solid rgba(130, 225, 255, 0.35);
+
+    animation: rotorSpin 0.25s linear infinite;
+}
+
+@keyframes rotorSpin {
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+.rotor-1 {
+    left: -3px;
+    top: 15px;
+}
+
+.rotor-2 {
+    right: -3px;
+    top: 15px;
+}
+
+.rotor-3 {
+    left: -3px;
+    bottom: 12px;
+}
+
+.rotor-4 {
+    right: -3px;
+    bottom: 12px;
+}
+
+
+/* =========================
+   HUD
+========================= */
+
+.hud {
+    position: absolute;
+
+    font-family: monospace;
+
+    color: #7defff;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+.hud span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.hud strong {
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.hud small {
+    color: #4d7b87;
+}
+
+.hud-top {
+    top: 55px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 30px;
+}
+
+.hud-left {
+    left: 30px;
+    top: 48%;
+}
+
+.hud-right {
+    right: 30px;
+    top: 48%;
+}
+
+.hud-bottom {
+    bottom: 55px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 35px;
+}
+
+.hud b {
+    color: #00ff9d;
+}
+
+
+/* =========================
+   SYSTEM STRIP
+========================= */
+
+.systems {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    margin: 0 6vw 35px;
+
+    border-top: 1px solid rgba(0, 217, 255, 0.15);
+    border-bottom: 1px solid rgba(0, 217, 255, 0.15);
+
+    background: rgba(3, 12, 18, 0.5);
+}
+
+.system-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 25px;
+
+    border-right: 1px solid rgba(0, 217, 255, 0.1);
+}
+
+.system-number {
+    color: #00d9ff;
+
+    font-family: monospace;
+
+    font-size: 11px;
+}
+
+.system-item strong {
+    display: block;
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+}
+
+.system-item small {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #58747e;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 22px 6vw;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #405963;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+
+        padding-top: 60px;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .drone-zone {
+        height: 500px;
+        margin-top: 10px;
+    }
+
+    .ring-3 {
+        width: 450px;
+        height: 450px;
+    }
+
+    .systems {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .topbar {
+        padding: 0 20px;
+    }
+
+    .system-state {
+        display: none;
+    }
+
+    h1 {
+        font-size: 62px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .drone-zone {
+        transform: scale(0.78);
+        margin: -30px -50px;
+    }
+
+    .systems {
+        grid-template-columns: 1fr;
+    }
+
+    .system-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
